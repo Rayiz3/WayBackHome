@@ -1,0 +1,2 @@
+pykorail==0.1.2
+curl-cffi==0.16.3

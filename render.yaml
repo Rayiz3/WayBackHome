@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: waybackhome
+    runtime: python
+    region: singapore
+    plan: starter
+    numInstances: 1
+    buildCommand: pip install -r server/requirements.txt
+    startCommand: python -u -m server.run
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
+      - key: HOST
+        value: 0.0.0.0
+      - key: WAYBACKHOME_DATA_DIR
+        value: /var/data/waybackhome
+      - key: WAYBACKHOME_API_KEY
+        generateValue: true
+    disk:
+      name: waybackhome-data
+      mountPath: /var/data
+      sizeGB: 1
